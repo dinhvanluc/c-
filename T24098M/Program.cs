@@ -1,25 +1,24 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using T24098M.sesion2;
+using T24098M.sesion4;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BankApp
+public class Program
 {
-    internal class Program
+    public static void Main()
     {
-        static void Main(string[] args)
-        {
-            // Tạo một tài khoản ngân hàng mới
-            BankAccount account = new BankAccount("123456", "Đinh Văn Lực", 5000000);
-            // In thông tin tài khoản
-            account.PrintAccountInfo();
-           
-            account.Deposit(5000);
-            // Nạp tiền vào tài khoản
+        PetStore store = new PetStore();
+        Dog dog = new Dog("Buddy", 3, 20.5, true);
+        Cat cat = new Cat("da da ", 2, 5.0, "vang");
+        Bird bird = new Bird("dai bang", 1, 0.5, "cau vong");
 
-            account.Withdraw(2000);
-            // Rút tiền từ tài khoản
-
-            account.PrintAccountInfo();
-            // In thông tin tài khoản sau khi giao dịch
-        }
+        store.AddPet(dog);
+        store.AddPet(cat);
+        store.AddPet(bird);
+        store.ShowAllPets();
+        store.MakeAllPetsSound();
     }
 }
