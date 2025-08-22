@@ -1,24 +1,45 @@
-﻿// See https://aka.ms/new-console-template for more information
-using T24098M.sesion4;
+﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using T24098M.Bank;
+using T24098M.Music;
 
-public class Program
+namespace BankMusicApp
 {
-    public static void Main()
+    class Program
     {
-        PetStore store = new PetStore();
-        Dog dog = new Dog("Buddy", 3, 20.5, true);
-        Cat cat = new Cat("da da ", 2, 5.0, "vang");
-        Bird bird = new Bird("dai bang", 1, 0.5, "cau vong");
+        static void Main(string[] args)
+        {
+            // --- BANK SYSTEM ---
+            Console.WriteLine("=== Bank System ===");
+            Console.Write("Enter amount for Normal Account: ");
+            decimal normalAmount = decimal.Parse(Console.ReadLine());
+            NormalAccount normalAcc = new NormalAccount(normalAmount);
 
-        store.AddPet(dog);
-        store.AddPet(cat);
-        store.AddPet(bird);
-        store.ShowAllPets();
-        store.MakeAllPetsSound();
+            normalAcc.CheckBalance();
+            normalAcc.Transfer(1_000_000);
+
+            Console.WriteLine("\nExchange Account Example:");
+            ExchangeAccount exchAcc = new ExchangeAccount(25000, 1000);
+            exchAcc.CheckBalance();
+            exchAcc.Transfer(1_000_000);
+
+            // --- MUSIC SYSTEM ---
+            Console.WriteLine("\n=== Music Store ===");
+            List<Instrument> instruments = new List<Instrument>
+            {
+                new Guitar("Guitar Yamaha", 2020, 6),
+                new Piano("Piano Roland", 2019, 88),
+                new Guitar("Guitar Fender", 2021, 7),
+                new Piano("Piano Yamaha", 2018, 76),
+                new Guitar("Guitar Classic", 2017, 5)
+            };
+
+            foreach (var inst in instruments)
+            {
+                inst.ShowInfo();
+                inst.Play();
+            }
+        }
     }
 }
